@@ -1,0 +1,31 @@
+{
+	"name": "real-estate",
+	"version": "0.0.1",
+	"description": "Awesome project developed with TypeORM.",
+	"type": "commonjs",
+	"devDependencies": {
+		"@types/bcrypt": "^5.0.0",
+		"@types/jsonwebtoken": "^8.5.8",
+		"@types/node": "^16.11.10",
+		"nodemon": "^2.0.15",
+		"ts-node": "10.4.0",
+		"typescript": "4.5.2"
+	},
+	"dependencies": {
+		"apollo-server-express": "^3.6.6",
+		"bcrypt": "^5.0.1",
+		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
+		"graphql": "^16.3.0",
+		"jsonwebtoken": "^8.5.1",
+		"pg": "^8.4.0",
+		"reflect-metadata": "^0.1.13",
+		"typeorm": "0.3.4"
+	},
+	"scripts": {
+		"start": "ts-node src/index.ts",
+		"typeorm": "typeorm-ts-node-commonjs",
+		"dev:start": "nodemon --exec ts-node src/index.ts",
+		"prestart": "typeorm migration:run -d src/data-source.ts"
+	}
+}
