@@ -3,10 +3,13 @@
 import { authService } from "../../api/auth/auth.service"
 import { userService } from "../../api/user/user.service"
 import { authHelper } from "../../helpers/auth.helper"
-import { dateScalar } from "../typeDefs/customTypes"
+import { commentResolvers } from "./comments.resolvers"
+import { likesResolvers } from "./likes.resolvers"
+import { listingsResolvers } from "./listings.resolvers"
+import { typeResolvers } from "./types.resolvers"
 
 const resolvers = {
-	Date: dateScalar,
+	...typeResolvers,
 	Query: {
 		getUser: async (parent: any, args: any, { authorization }: any) => {
 			const user = authHelper.verifyToken(authorization)
@@ -17,10 +20,15 @@ const resolvers = {
 
 		login: async (parents: any, args: any) =>
 			await authService.login(args.email, args.password),
+
+		...listingsResolvers.query,
 	},
 
 	Mutation: {
 		signUp: async (parent: any, args: any) => await authService.signUp(args),
+		...listingsResolvers.mutations,
+		...likesResolvers.mutations,
+		...commentResolvers.mutations,
 	},
 }
 

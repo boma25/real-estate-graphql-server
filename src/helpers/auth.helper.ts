@@ -31,7 +31,6 @@ class AuthHelper {
 			const data: any = jsonwebtoken.verify(token, this.JWT_SECRET)
 			return data.data
 		} catch (err) {
-			console.log(err)
 			throw err
 		}
 	}
